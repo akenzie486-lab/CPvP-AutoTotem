@@ -1,8 +1,0 @@
-{
-  "header": {
-    "name": "CPvP AutoTotem", "description": "Fast AutoTotem for CPvP", "version": [1, 0, 0], "min_engine_version": [1, 20, 0] },
-  "modules": [
-    {
-      "type": "native", "entry": "build/libCPvPAutoTotem.so", "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890" }
-  ]
-}
