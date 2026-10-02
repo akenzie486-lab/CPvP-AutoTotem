@@ -1,0 +1,27 @@
+name: Build Android Mod
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile C++ Shared Library
+        run: |
+          $ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android30-clang++ \
+          -shared -fPIC -O3 src/main.cpp -o libCPvPAutoTotem.so
+
+      - name: Packaging Mod
+        run: |
+          mkdir -p package/build
+          cp manifest.json package/
+          cp libCPvPAutoTotem.so package/build/
+          cd package && zip -r ../CPvPAutoTotem.levipack .
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CPvPAutoTotem-Levipack
+          path: CPvPAutoTotem.levipack
+          
